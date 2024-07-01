@@ -1,0 +1,19 @@
+@model IEnumerable<web222.Models.Pracodawca>
+
+<h2>Employers List</h2>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var pracodawca in Model)
+    {
+    <tr>
+        <td>@pracodawca.Nazwa</td>
+    </tr>
+    }
+    </tbody>
+</table>

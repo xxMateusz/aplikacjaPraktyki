@@ -1,0 +1,106 @@
+@model web222.Controllers.AdminViewModel
+
+<h2>Admin Panel</h2>
+
+<h3>Form Data</h3>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Nazwisko</th>
+        <th>Imie</th>
+        <th>Pracodawca</th>
+        <th>Data Weryfikacji</th>
+        <th>Data Wysłania Do SG</th>
+        <th>Numer WNP</th>
+        <th>WNP</th>
+        <th>Kierownik/Przemek</th>
+        <th>Data Odbioru ID</th>
+        <th>Uwagi</th>
+        <th>Dział BB</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.FormData)
+    {
+    <tr>
+        <td>@item.Id</td>
+        <td>@item.Nazwisko</td>
+        <td>@item.Imie</td>
+        <td>@item.Pracodawca</td>
+        <td>@item.DataWeryfikacji</td>
+        <td>@item.DataWyslaniaDoSG</td>
+        <td>@item.NumerWNP</td>
+        <td>@item.WNP</td>
+        <td>@item.KierownikPrzemek</td>
+        <td>@item.DataOdbioruID</td>
+        <td>@item.Uwagi</td>
+        <td>@item.DzialBB</td>
+        <td>
+            <form asp-action="DeleteFormData" method="post">
+                <input type="hidden" name="id" value="@item.Id" />
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </td>
+    </tr>
+    }
+    </tbody>
+</table>
+
+<h3>Pracodawcy</h3>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Nazwa</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.Pracodawcy)
+    {
+    <tr>
+        <td>@item.Id</td>
+        <td>@item.Nazwa</td>
+        <td>
+            <form asp-action="DeletePracodawca" method="post">
+                <input type="hidden" name="id" value="@item.Id" />
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </td>
+    </tr>
+    }
+    </tbody>
+</table>
+
+<h3>Zones</h3>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Is Selected</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.Zones)
+    {
+    <tr>
+        <td>@item.Id</td>
+        <td>@item.Name</td>
+        <td>@item.IsSelected</td>
+        <td>
+            <form asp-action="DeleteZone" method="post">
+                <input type="hidden" name="id" value="@item.Id" />
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </td>
+    </tr>
+    }
+    </tbody>
+</table>
+<div>
+    <a class="btn btn-primary" href="/Admin/ExportToExcel">Export Data to Excel</a>
+</div>
